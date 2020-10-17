@@ -51,7 +51,6 @@ def download_faculty_images(url):
     s = load_html(url)
     soup = BeautifulSoup(s, "html.parser")
     mediaSet = soup.findAll("div", {"class": "post-media"})
-    print(len(mediaSet))
     tempStackImage = []
     prefixSplit = "data-src=\""
     for m in mediaSet:
@@ -95,9 +94,9 @@ def print_faculty_numbers(url):
 def main():
     pageurl = "https://waiiinta.github.io/"
 
-    # print(get_faculty_names(pageurl))
+    print(get_faculty_names(pageurl))
     
-    # download_faculty_images(pageurl)
+    download_faculty_images(pageurl)
 
     print_faculty_numbers(pageurl)
 
