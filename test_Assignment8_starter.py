@@ -72,24 +72,24 @@ def print_faculty_numbers(url):
             soup2 = BeautifulSoup(q, "html.parser")
             preficFaculty = "Faculty of"
             offSetNameFaculty = False
-            offSetContact = False
-            # facultySet = soup2.findAll("div", {"class": "text-title-primary"})
+            offSetContact = 0
             for f in soup2.strings:
-                if (len(f) > 1 & offSetNameFaculty == False):
+                if (len(f) > 1 & offSetContact < 2):
                     if(find_between_r(str(f), preficFaculty, len(f))):
                         tempNameFaculty = find_between_r(str(f), preficFaculty, len(f))
-                        offSetNameFaculty = True
-            nameFaculty = preficFaculty + tempNameFaculty
-            tempData = nameFaculty.lower()
-            print(tempData)
+                        offSetContact += 1
+            fullNameFaculty = preficFaculty + tempNameFaculty            
+            nameFaculty = fullNameFaculty.split(", ")
+            tempFaculty = nameFaculty[0].lower().split()
+            nameLowerJoinSlpitFaculty = '-' .join(tempFaculty)
+            print(nameLowerJoinSlpitFaculty)
             contactSet = soup2.findAll("div", {"class": "wpcf-field-wysiwyg wpcf-field-custom-content-contact-2"})
             prefixSplit2 = "+66"
             for r in contactSet:
                 if(len(r) > 1):
-                    tempContact = find_between_r(str(r), prefixSplit2,11 )
+                    tempContact = find_between_r(str(r), prefixSplit2,10 )
             print( "0" + tempContact)
             print()
-
 # -------------------------------------------------
 
 def main():
