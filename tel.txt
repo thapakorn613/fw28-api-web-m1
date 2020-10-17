@@ -1,0 +1,56 @@
+faculty-of-allied-health-sciences
+0 2218 1065
+
+faculty-of-architecture
+0 2218 4302
+
+faculty-of-arts
+0 2218 4870
+
+faculty-of-commerce-and-accountancy
+0 2218 5758
+
+faculty-of-communication-arts
+0 2218 2215
+
+faculty-of-dentistry
+0 2218 8635
+
+faculty-of-economics
+0 2218 6259
+
+faculty-of-education
+0 2218 2565
+
+faculty-of-engineering
+0 2218 6337
+
+faculty-of-fine-and-applied-arts
+0 2218 4583
+
+faculty-of-law
+0 2218 2017
+
+faculty-of-medicine
+0 2256 4288
+
+faculty-of-nursing
+0 2218 1131
+
+faculty-of-pharmaceutical-sciences
+0 2215 0871
+
+faculty-of-political-science
+0 2218 7250
+
+faculty-of-psychology
+0 2218 1189
+
+faculty-of-science
+0 2218 5000
+
+faculty-of-sports-science
+0 2218 1032
+
+faculty-of-veterinary-science
+0 2218 9771

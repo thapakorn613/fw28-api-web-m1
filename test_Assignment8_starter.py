@@ -3,25 +3,12 @@
 # ...
 # Declare that you do this by yourself
 import urllib
-
 import urllib.request as urq
-import re
-import codecs
-from bs4 import BeautifulSoup
-
 
 def load_html(page_url):
     return str(urq.urlopen(page_url).read().decode('utf-8'))
 # -------------------------------------------------
-
-
-def wordiest_line(url):
-    resp = urq.urlopen(url)
-    charset = resp.headers.get_content_charset()
-    textreader = urq.codecs.getreader(charset)(resp)
-    for line in textreader:
-        line = line.rstrip()
-
+from bs4 import BeautifulSoup
 
 def find_between(s, first, last):
     try:
@@ -73,19 +60,46 @@ def download_faculty_images(url):
         save_image(mLink,img_name)
 
 def print_faculty_numbers(url):
-    print("faculty-of-allied-health-sciences")
-    print("0 2218 1100")
-# -------------------------------------------------
+    s = load_html(url)
+    soup = BeautifulSoup(s, "html.parser")
+    mediaSet = soup.findAll("div", {"class": "post-media"})
+    tempStackImage = []
+    prefixSplit = "href=\""
+    for m in mediaSet:
+        if(len(find_between(str(m), prefixSplit, "\"")) > 1):
+            mLink = find_between(str(m), prefixSplit, "\"")
+            q = load_html(mLink)
+            soup2 = BeautifulSoup(q, "html.parser")
+            preficFaculty = "Faculty of"
+            offSetNameFaculty = False
+            offSetContact = False
+            # facultySet = soup2.findAll("div", {"class": "text-title-primary"})
+            for f in soup2.strings:
+                if (len(f) > 1 & offSetNameFaculty == False):
+                    if(find_between_r(str(f), preficFaculty, len(f))):
+                        tempNameFaculty = find_between_r(str(f), preficFaculty, len(f))
+                        offSetNameFaculty = True
+            nameFaculty = preficFaculty + tempNameFaculty
+            tempData = nameFaculty.lower()
+            print(tempData)
+            contactSet = soup2.findAll("div", {"class": "wpcf-field-wysiwyg wpcf-field-custom-content-contact-2"})
+            prefixSplit2 = "+66"
+            for r in contactSet:
+                if(len(r) > 1):
+                    tempContact = find_between_r(str(r), prefixSplit2,11 )
+            print( "0" + tempContact)
+            print()
 
+# -------------------------------------------------
 
 def main():
     pageurl = "https://waiiinta.github.io/"
 
     # print(get_faculty_names(pageurl))
     
-    download_faculty_images(pageurl)
+    # download_faculty_images(pageurl)
 
-    # print_faculty_numbers(pageurl)
+    print_faculty_numbers(pageurl)
 
 
 # -------------------------------------------------
